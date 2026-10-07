@@ -12,10 +12,6 @@ React 19 · TypeScript · Three.js · Vite · Web Workers
 
 </div>
 
-## Demo
-
-![3DSmartLoad: manage cargo, watch the placement sequence in the 3D scene and open the report](docs/assets/demo.gif)
-
 A **10-second** demo captured from the real app: **Cargo → placement sequence of 18 units → Reports**. The placement sequence is time-compressed to fit the workflow into 10 seconds, and the GIF loops automatically. It was recorded before sign-in, delivery stops, axle checks, the Projects page and the report diagrams were added.
 
 > The GIF is only a preview. Run the commands in Quick start below to use the app interactively.
