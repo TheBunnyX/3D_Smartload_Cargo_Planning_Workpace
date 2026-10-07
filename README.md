@@ -237,9 +237,27 @@ scripts/build_demo_gif.py   # Composes the GIF from real screenshots (Pillow)
 
 ### Deploy
 
-Serve the contents of `dist/` from static hosting with HTTPS (sign-in requires it). If you deploy under a subpath, such as a GitHub Pages project site, set `base` in `vite.config.ts` to match the repository path before building.
+#### Vercel
 
-The project does not include a deployment workflow or a public demo URL. Running the local preview does not publish the site to the internet.
+The repository includes a `vercel.json`, so Vercel needs no manual settings: it installs with `npm ci`, builds with `npm run build` and serves `dist/`.
+
+**From Git** — push the project to GitHub, GitLab or Bitbucket, then choose **Add New → Project** on [vercel.com](https://vercel.com/new) and import the repository. Every push to the main branch deploys again.
+
+**From your machine** — with the [Vercel CLI](https://vercel.com/docs/cli):
+
+```bash
+npm i -g vercel
+vercel          # preview deployment; the first run links or creates the project
+vercel --prod   # production deployment
+```
+
+`vercel.json` also sets security headers for every response (a Content-Security-Policy that only allows the site's own scripts, plus `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` and `Permissions-Policy`) and long-term caching for the hashed files in `/assets`. If you later load scripts, fonts or data from another domain, add that domain to the policy.
+
+A deployed site is public. The sign-in screen shows the demo account, so anyone with the link can open the app; see [Sign in](#sign-in). Each visitor's projects stay in their own browser.
+
+#### Other static hosting
+
+Serve the contents of `dist/` from any static host with HTTPS (sign-in requires it). If you deploy under a subpath, such as a GitHub Pages project site, set `base` in `vite.config.ts` to match the repository path before building. The headers in `vercel.json` apply only on Vercel; configure equivalent headers on other hosts.
 
 ### Contributing
 
